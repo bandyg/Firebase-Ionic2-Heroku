@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Emitir Video</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <script type="text/javascript" src="socket.io.js"></script>
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+</head>
+
+<body onload="val(1)">
+    <video style="display:none;" src="" id="video" autoplay="true" controls>
+    </video>
+    
+    <div id="contenedor">
+        <div id="izquierda">
+            <canvas id="preview" onmousedown="myFunction(this,'1')" onmouseup="myFunction(this,'0')"></canvas>
+        </div>
+        <div id="derecha">
+            <p id="estado">Estado: <span id="alert" value="Seguro"></span></p>
+            <br>
+            <p id="foco01">Foco 01:</p>
+            <img src="img/apagado.png" id="f1" onclick="cambiar(1)"/>
+            <br>
+            <p id="foco02">Foco 02:</p>
+            <img src="img/apagado.png" id="f2" onclick="cambiar(2)"/>
+            <br>
+            <p id="foco03">Foco 03:</p>
+            <img src="img/apagado.png" id="f3" onclick="cambiar(3)"/>
+            <br>
+        </div>
+    </div>
+
+    <script>
+    
+    </script>
+    <script type="text/javascript">            
+            var canvas = document.getElementById("preview");
+            var context = canvas.getContext("2d");
+            
+            canvas.width = 800;
+            canvas.height= 600;
+
+            context.width=canvas.width;
+            context.height= canvas.height;
+            
+            var video= document.getElementById("video");
+
+            var socket= io();
+
+            function logger(msg)
+            {
+                $("#logger").text(msg);
+            }
+            function loadCam(stream){
+                video.src = window.URL.createObjectURL(stream)
+            }
+
+            function loadFail(){
+                logger('Camara no conectada, por favor revise su camara');
+            }
+        
+            function viewVideo(video,context)
+            {
+
+                context.drawImage(video,0,0,context.width,context.height);
+                socket.emit('stream',canvas.toDataURL('image/webp'))
+            }
+
+            $(function(){
+                navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                 navigator.mozGetUserMedia || navigator.msgGetUserMedia);
+
+                if(navigator.getUserMedia){
+                    navigator.getUserMedia({video : true},loadCam, loadFail);
+                }
+                //1000 --> 1seg
+                setInterval(function(){
+                     viewVideo(video, context);
+                },70);
+            });    
+        </script>
+
+    <script src="script2.js"></script>
+</body>
+
+</html>
