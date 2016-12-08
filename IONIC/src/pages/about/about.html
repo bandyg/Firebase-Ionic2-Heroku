@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Imágenes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-slides pager>
+
+    <ion-slide *ngFor="let url of urls">
+      <ion-title>{{url.date}}</ion-title>
+      <img src="{{url.ur}}" />
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
