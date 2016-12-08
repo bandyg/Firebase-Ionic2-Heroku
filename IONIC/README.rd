@@ -1,9 +1,11 @@
-sudo npm install -g node-gyp@3.4.0
-sudo npm install -g @ionic/app-scripts --save
-npm -g install firebase --save
-npm install -g typings
-typings install --save firebase
-typings install file:node_modules/firebase/firebase.d.ts --save --global && typings install
+STEP ONE:
+	$ sudo npm install				//install dpeendencies
+	
+STEP TWO:
+	$ sudo npm run build			//Structure project
 
+STEP THREE
+	$ sudo ionic serve
 
-ionic build android
+-------------------------------
+In OS windows, only delete: "sudo"
