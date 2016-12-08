@@ -1,0 +1,22 @@
+/*
+        this.url = canvas.toDataURL("image/png");
+
+        var dt = new Date();
+
+        var month = dt.getMonth() + 1;
+        var day = dt.getDate();
+        var year = dt.getFullYear();
+        var hora = dt.getHours();
+        var minutos = dt.getMinutes();
+
+        var postData = {
+            url: this.url,
+            fecha: day + "/" + month + "/" + year,
+            hora: hora + ":" + minutos
+        };
+
+        var newPostKey = firebase.database().ref().child('images').push().key;
+        var updates = {};
+        updates['/images/' + newPostKey] = postData;
+        firebase.database().ref().update(updates);
+*/

@@ -1,0 +1,19 @@
+{
+  "name": "subir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Eduardo De la Cruz",
+  "license": "ISC",
+  "dependencies" : {
+    "socket.io" : "*",
+    "express" : "*",
+    "log" : "*"
+  },
+  "engines" : {
+    "node" : "6.3.1"
+  }
+}
