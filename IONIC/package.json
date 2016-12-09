@@ -6,6 +6,8 @@
   "scripts": {
     "build": "ionic-app-scripts build",
     "watch": "ionic-app-scripts watch",
+    "serve": "gulp build && ionic-app-scripts serve",
+    "debug:android": "ionic run android -l -c -s",
     "serve:before": "watch",
     "emulate:before": "build",
     "deploy:before": "build",
